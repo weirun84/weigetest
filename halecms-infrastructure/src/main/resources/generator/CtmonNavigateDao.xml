@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonNavigateDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonNavigate">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="isshow" jdbcType="BIT" property="isshow" />
+    <result column="vieworder" jdbcType="INTEGER" property="vieworder" />
+    <result column="opennew" jdbcType="BIT" property="opennew" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="issystem" jdbcType="BIT" property="issystem" />
+    <result column="is_mobile" jdbcType="BIT" property="isMobile" />
+    <result column="mobile_ico" jdbcType="VARCHAR" property="mobileIco" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="wxurl" jdbcType="VARCHAR" property="wxurl" />
+    <result column="ico" jdbcType="VARCHAR" property="ico" />
+    <result column="nav_typeid" jdbcType="INTEGER" property="navTypeid" />
+    <result column="nav_id" jdbcType="INTEGER" property="navId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, isshow, vieworder, opennew, url, `type`, issystem, is_mobile, mobile_ico, 
+    parent_id, wxurl, ico, nav_typeid, nav_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_navigate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_navigate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonNavigate" useGeneratedKeys="true">
+    insert into ctmon_navigate (`name`, isshow, vieworder, 
+      opennew, url, `type`, issystem, 
+      is_mobile, mobile_ico, parent_id, 
+      wxurl, ico, nav_typeid, 
+      nav_id)
+    values (#{name,jdbcType=VARCHAR}, #{isshow,jdbcType=BIT}, #{vieworder,jdbcType=INTEGER}, 
+      #{opennew,jdbcType=BIT}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{issystem,jdbcType=BIT}, 
+      #{isMobile,jdbcType=BIT}, #{mobileIco,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{wxurl,jdbcType=VARCHAR}, #{ico,jdbcType=VARCHAR}, #{navTypeid,jdbcType=INTEGER}, 
+      #{navId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonNavigate" useGeneratedKeys="true">
+    insert into ctmon_navigate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="isshow != null">
+        isshow,
+      </if>
+      <if test="vieworder != null">
+        vieworder,
+      </if>
+      <if test="opennew != null">
+        opennew,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="issystem != null">
+        issystem,
+      </if>
+      <if test="isMobile != null">
+        is_mobile,
+      </if>
+      <if test="mobileIco != null">
+        mobile_ico,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="wxurl != null">
+        wxurl,
+      </if>
+      <if test="ico != null">
+        ico,
+      </if>
+      <if test="navTypeid != null">
+        nav_typeid,
+      </if>
+      <if test="navId != null">
+        nav_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isshow != null">
+        #{isshow,jdbcType=BIT},
+      </if>
+      <if test="vieworder != null">
+        #{vieworder,jdbcType=INTEGER},
+      </if>
+      <if test="opennew != null">
+        #{opennew,jdbcType=BIT},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="issystem != null">
+        #{issystem,jdbcType=BIT},
+      </if>
+      <if test="isMobile != null">
+        #{isMobile,jdbcType=BIT},
+      </if>
+      <if test="mobileIco != null">
+        #{mobileIco,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="wxurl != null">
+        #{wxurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ico != null">
+        #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="navTypeid != null">
+        #{navTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="navId != null">
+        #{navId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonNavigate">
+    update ctmon_navigate
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isshow != null">
+        isshow = #{isshow,jdbcType=BIT},
+      </if>
+      <if test="vieworder != null">
+        vieworder = #{vieworder,jdbcType=INTEGER},
+      </if>
+      <if test="opennew != null">
+        opennew = #{opennew,jdbcType=BIT},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="issystem != null">
+        issystem = #{issystem,jdbcType=BIT},
+      </if>
+      <if test="isMobile != null">
+        is_mobile = #{isMobile,jdbcType=BIT},
+      </if>
+      <if test="mobileIco != null">
+        mobile_ico = #{mobileIco,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="wxurl != null">
+        wxurl = #{wxurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ico != null">
+        ico = #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="navTypeid != null">
+        nav_typeid = #{navTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="navId != null">
+        nav_id = #{navId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonNavigate">
+    update ctmon_navigate
+    set `name` = #{name,jdbcType=VARCHAR},
+      isshow = #{isshow,jdbcType=BIT},
+      vieworder = #{vieworder,jdbcType=INTEGER},
+      opennew = #{opennew,jdbcType=BIT},
+      url = #{url,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      issystem = #{issystem,jdbcType=BIT},
+      is_mobile = #{isMobile,jdbcType=BIT},
+      mobile_ico = #{mobileIco,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      wxurl = #{wxurl,jdbcType=VARCHAR},
+      ico = #{ico,jdbcType=VARCHAR},
+      nav_typeid = #{navTypeid,jdbcType=INTEGER},
+      nav_id = #{navId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

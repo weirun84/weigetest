@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonGoodsGalleryDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsGallery">
+    <id column="img_id" jdbcType="INTEGER" property="imgId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="img_desc" jdbcType="VARCHAR" property="imgDesc" />
+    <result column="goods_thumb" jdbcType="VARCHAR" property="goodsThumb" />
+    <result column="goods_img" jdbcType="VARCHAR" property="goodsImg" />
+    <result column="info_img" jdbcType="VARCHAR" property="infoImg" />
+    <result column="original_img" jdbcType="VARCHAR" property="originalImg" />
+    <result column="admin_user_id" jdbcType="INTEGER" property="adminUserId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    img_id, goods_id, img_desc, goods_thumb, goods_img, info_img, original_img, admin_user_id, 
+    order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_goods_gallery
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_goods_gallery
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="img_id" keyProperty="imgId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsGallery" useGeneratedKeys="true">
+    insert into ctmon_goods_gallery (goods_id, img_desc, goods_thumb, 
+      goods_img, info_img, original_img, 
+      admin_user_id, order_id)
+    values (#{goodsId,jdbcType=INTEGER}, #{imgDesc,jdbcType=VARCHAR}, #{goodsThumb,jdbcType=VARCHAR}, 
+      #{goodsImg,jdbcType=VARCHAR}, #{infoImg,jdbcType=VARCHAR}, #{originalImg,jdbcType=VARCHAR}, 
+      #{adminUserId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="img_id" keyProperty="imgId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsGallery" useGeneratedKeys="true">
+    insert into ctmon_goods_gallery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="imgDesc != null">
+        img_desc,
+      </if>
+      <if test="goodsThumb != null">
+        goods_thumb,
+      </if>
+      <if test="goodsImg != null">
+        goods_img,
+      </if>
+      <if test="infoImg != null">
+        info_img,
+      </if>
+      <if test="originalImg != null">
+        original_img,
+      </if>
+      <if test="adminUserId != null">
+        admin_user_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="imgDesc != null">
+        #{imgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsThumb != null">
+        #{goodsThumb,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg != null">
+        #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="infoImg != null">
+        #{infoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="originalImg != null">
+        #{originalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUserId != null">
+        #{adminUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsGallery">
+    update ctmon_goods_gallery
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="imgDesc != null">
+        img_desc = #{imgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsThumb != null">
+        goods_thumb = #{goodsThumb,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg != null">
+        goods_img = #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="infoImg != null">
+        info_img = #{infoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="originalImg != null">
+        original_img = #{originalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUserId != null">
+        admin_user_id = #{adminUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsGallery">
+    update ctmon_goods_gallery
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      img_desc = #{imgDesc,jdbcType=VARCHAR},
+      goods_thumb = #{goodsThumb,jdbcType=VARCHAR},
+      goods_img = #{goodsImg,jdbcType=VARCHAR},
+      info_img = #{infoImg,jdbcType=VARCHAR},
+      original_img = #{originalImg,jdbcType=VARCHAR},
+      admin_user_id = #{adminUserId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>

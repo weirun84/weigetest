@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonDownloadDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonDownload">
+    <id column="down_id" jdbcType="INTEGER" property="downId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="inputtime" jdbcType="TIMESTAMP" property="inputtime" />
+    <result column="is_enable" jdbcType="BIT" property="isEnable" />
+    <result column="orderid" jdbcType="INTEGER" property="orderid" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="rank" jdbcType="INTEGER" property="rank" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="filesize" jdbcType="VARCHAR" property="filesize" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="urlrewriter" jdbcType="VARCHAR" property="urlrewriter" />
+    <result column="cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="is_top" jdbcType="BIT" property="isTop" />
+    <result column="seokeyword" jdbcType="VARCHAR" property="seokeyword" />
+    <result column="seodesc" jdbcType="VARCHAR" property="seodesc" />
+    <result column="template_file" jdbcType="VARCHAR" property="templateFile" />
+    <result column="showtime" jdbcType="TIMESTAMP" property="showtime" />
+    <result column="is_reco" jdbcType="INTEGER" property="isReco" />
+    <result column="soft_lan" jdbcType="VARCHAR" property="softLan" />
+    <result column="provider" jdbcType="VARCHAR" property="provider" />
+    <result column="soft_authorize" jdbcType="VARCHAR" property="softAuthorize" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="no_reco" jdbcType="INTEGER" property="noReco" />
+    <result column="pagetitle" jdbcType="VARCHAR" property="pagetitle" />
+    <result column="pagekeywords" jdbcType="VARCHAR" property="pagekeywords" />
+    <result column="pagedesc" jdbcType="VARCHAR" property="pagedesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    down_id, title, keywords, content, inputtime, is_enable, orderid, url, `rank`, author, 
+    `source`, des, photo, filesize, filename, click_count, urlrewriter, cat_id, is_top, 
+    seokeyword, seodesc, template_file, showtime, is_reco, soft_lan, provider, soft_authorize, 
+    platform, no_reco, pagetitle, pagekeywords, pagedesc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_download
+    where down_id = #{downId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_download
+    where down_id = #{downId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="down_id" keyProperty="downId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownload" useGeneratedKeys="true">
+    insert into ctmon_download (title, keywords, content, 
+      inputtime, is_enable, orderid, 
+      url, `rank`, author, 
+      `source`, des, photo, 
+      filesize, filename, click_count, 
+      urlrewriter, cat_id, is_top, 
+      seokeyword, seodesc, template_file, 
+      showtime, is_reco, soft_lan, 
+      provider, soft_authorize, platform, 
+      no_reco, pagetitle, pagekeywords, 
+      pagedesc)
+    values (#{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{inputtime,jdbcType=TIMESTAMP}, #{isEnable,jdbcType=BIT}, #{orderid,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{filesize,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{clickCount,jdbcType=INTEGER}, 
+      #{urlrewriter,jdbcType=VARCHAR}, #{catId,jdbcType=INTEGER}, #{isTop,jdbcType=BIT}, 
+      #{seokeyword,jdbcType=VARCHAR}, #{seodesc,jdbcType=VARCHAR}, #{templateFile,jdbcType=VARCHAR}, 
+      #{showtime,jdbcType=TIMESTAMP}, #{isReco,jdbcType=INTEGER}, #{softLan,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{softAuthorize,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, 
+      #{noReco,jdbcType=INTEGER}, #{pagetitle,jdbcType=VARCHAR}, #{pagekeywords,jdbcType=VARCHAR}, 
+      #{pagedesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="down_id" keyProperty="downId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownload" useGeneratedKeys="true">
+    insert into ctmon_download
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="inputtime != null">
+        inputtime,
+      </if>
+      <if test="isEnable != null">
+        is_enable,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="rank != null">
+        `rank`,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="filesize != null">
+        filesize,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter,
+      </if>
+      <if test="catId != null">
+        cat_id,
+      </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
+      <if test="seokeyword != null">
+        seokeyword,
+      </if>
+      <if test="seodesc != null">
+        seodesc,
+      </if>
+      <if test="templateFile != null">
+        template_file,
+      </if>
+      <if test="showtime != null">
+        showtime,
+      </if>
+      <if test="isReco != null">
+        is_reco,
+      </if>
+      <if test="softLan != null">
+        soft_lan,
+      </if>
+      <if test="provider != null">
+        provider,
+      </if>
+      <if test="softAuthorize != null">
+        soft_authorize,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="noReco != null">
+        no_reco,
+      </if>
+      <if test="pagetitle != null">
+        pagetitle,
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords,
+      </if>
+      <if test="pagedesc != null">
+        pagedesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtime != null">
+        #{inputtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=BIT},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="urlrewriter != null">
+        #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null">
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=BIT},
+      </if>
+      <if test="seokeyword != null">
+        #{seokeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seodesc != null">
+        #{seodesc,jdbcType=VARCHAR},
+      </if>
+      <if test="templateFile != null">
+        #{templateFile,jdbcType=VARCHAR},
+      </if>
+      <if test="showtime != null">
+        #{showtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isReco != null">
+        #{isReco,jdbcType=INTEGER},
+      </if>
+      <if test="softLan != null">
+        #{softLan,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null">
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="softAuthorize != null">
+        #{softAuthorize,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="noReco != null">
+        #{noReco,jdbcType=INTEGER},
+      </if>
+      <if test="pagetitle != null">
+        #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        #{pagedesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownload">
+    update ctmon_download
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtime != null">
+        inputtime = #{inputtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnable != null">
+        is_enable = #{isEnable,jdbcType=BIT},
+      </if>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        `rank` = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        `source` = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        filesize = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null">
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=BIT},
+      </if>
+      <if test="seokeyword != null">
+        seokeyword = #{seokeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seodesc != null">
+        seodesc = #{seodesc,jdbcType=VARCHAR},
+      </if>
+      <if test="templateFile != null">
+        template_file = #{templateFile,jdbcType=VARCHAR},
+      </if>
+      <if test="showtime != null">
+        showtime = #{showtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isReco != null">
+        is_reco = #{isReco,jdbcType=INTEGER},
+      </if>
+      <if test="softLan != null">
+        soft_lan = #{softLan,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null">
+        provider = #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="softAuthorize != null">
+        soft_authorize = #{softAuthorize,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="noReco != null">
+        no_reco = #{noReco,jdbcType=INTEGER},
+      </if>
+      <if test="pagetitle != null">
+        pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        pagedesc = #{pagedesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where down_id = #{downId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownload">
+    update ctmon_download
+    set title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      inputtime = #{inputtime,jdbcType=TIMESTAMP},
+      is_enable = #{isEnable,jdbcType=BIT},
+      orderid = #{orderid,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      `rank` = #{rank,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      `source` = #{source,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      filesize = #{filesize,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=BIT},
+      seokeyword = #{seokeyword,jdbcType=VARCHAR},
+      seodesc = #{seodesc,jdbcType=VARCHAR},
+      template_file = #{templateFile,jdbcType=VARCHAR},
+      showtime = #{showtime,jdbcType=TIMESTAMP},
+      is_reco = #{isReco,jdbcType=INTEGER},
+      soft_lan = #{softLan,jdbcType=VARCHAR},
+      provider = #{provider,jdbcType=VARCHAR},
+      soft_authorize = #{softAuthorize,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      no_reco = #{noReco,jdbcType=INTEGER},
+      pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      pagedesc = #{pagedesc,jdbcType=VARCHAR}
+    where down_id = #{downId,jdbcType=INTEGER}
+  </update>
+</mapper>

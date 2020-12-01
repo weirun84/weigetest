@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonConfigDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="tip" jdbcType="VARCHAR" property="tip" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="store_range" jdbcType="VARCHAR" property="storeRange" />
+    <result column="store_dir" jdbcType="VARCHAR" property="storeDir" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="isshow" jdbcType="BIT" property="isshow" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parent_id, `name`, code, `type`, tip, `size`, store_range, store_dir, `value`, 
+    sort_order, isshow
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonConfig" useGeneratedKeys="true">
+    insert into ctmon_config (parent_id, `name`, code, 
+      `type`, tip, `size`, store_range, 
+      store_dir, `value`, sort_order, 
+      isshow)
+    values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{tip,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{storeRange,jdbcType=VARCHAR}, 
+      #{storeDir,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{sortOrder,jdbcType=INTEGER}, 
+      #{isshow,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonConfig" useGeneratedKeys="true">
+    insert into ctmon_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="tip != null">
+        tip,
+      </if>
+      <if test="size != null">
+        `size`,
+      </if>
+      <if test="storeRange != null">
+        store_range,
+      </if>
+      <if test="storeDir != null">
+        store_dir,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="isshow != null">
+        isshow,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null">
+        #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="storeRange != null">
+        #{storeRange,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDir != null">
+        #{storeDir,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isshow != null">
+        #{isshow,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonConfig">
+    update ctmon_config
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null">
+        tip = #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        `size` = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="storeRange != null">
+        store_range = #{storeRange,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDir != null">
+        store_dir = #{storeDir,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isshow != null">
+        isshow = #{isshow,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonConfig">
+    update ctmon_config
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      tip = #{tip,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=INTEGER},
+      store_range = #{storeRange,jdbcType=VARCHAR},
+      store_dir = #{storeDir,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      isshow = #{isshow,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

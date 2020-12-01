@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonGoodsCategoryDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsCategory">
+    <id column="cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="cat_name" jdbcType="VARCHAR" property="catName" />
+    <result column="cat_ico" jdbcType="VARCHAR" property="catIco" />
+    <result column="cat_desc" jdbcType="VARCHAR" property="catDesc" />
+    <result column="cat_path" jdbcType="VARCHAR" property="catPath" />
+    <result column="list_tlp" jdbcType="VARCHAR" property="listTlp" />
+    <result column="info_tlp" jdbcType="VARCHAR" property="infoTlp" />
+    <result column="cat_level" jdbcType="INTEGER" property="catLevel" />
+    <result column="cat_subcount" jdbcType="INTEGER" property="catSubcount" />
+    <result column="measure_unit" jdbcType="VARCHAR" property="measureUnit" />
+    <result column="show_in_nav" jdbcType="BIT" property="showInNav" />
+    <result column="is_show" jdbcType="BIT" property="isShow" />
+    <result column="is_hot" jdbcType="BIT" property="isHot" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="page_size" jdbcType="INTEGER" property="pageSize" />
+    <result column="urlrewriter" jdbcType="VARCHAR" property="urlrewriter" />
+    <result column="pagetitle" jdbcType="VARCHAR" property="pagetitle" />
+    <result column="pagekeywords" jdbcType="VARCHAR" property="pagekeywords" />
+    <result column="pagedesc" jdbcType="VARCHAR" property="pagedesc" />
+    <result column="pricearea" jdbcType="VARCHAR" property="pricearea" />
+    <result column="cat_name_en" jdbcType="VARCHAR" property="catNameEn" />
+    <result column="is_mobile" jdbcType="BIT" property="isMobile" />
+    <result column="cat_h_ico" jdbcType="VARCHAR" property="catHIco" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cat_id, parent_id, cat_name, cat_ico, cat_desc, cat_path, list_tlp, info_tlp, cat_level, 
+    cat_subcount, measure_unit, show_in_nav, is_show, is_hot, sort_order, page_size, 
+    urlrewriter, pagetitle, pagekeywords, pagedesc, pricearea, cat_name_en, is_mobile, 
+    cat_h_ico
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_goods_category
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_goods_category
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="cat_id" keyProperty="catId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsCategory" useGeneratedKeys="true">
+    insert into ctmon_goods_category (parent_id, cat_name, cat_ico, 
+      cat_desc, cat_path, list_tlp, 
+      info_tlp, cat_level, cat_subcount, 
+      measure_unit, show_in_nav, is_show, 
+      is_hot, sort_order, page_size, 
+      urlrewriter, pagetitle, pagekeywords, 
+      pagedesc, pricearea, cat_name_en, 
+      is_mobile, cat_h_ico)
+    values (#{parentId,jdbcType=INTEGER}, #{catName,jdbcType=VARCHAR}, #{catIco,jdbcType=VARCHAR}, 
+      #{catDesc,jdbcType=VARCHAR}, #{catPath,jdbcType=VARCHAR}, #{listTlp,jdbcType=VARCHAR}, 
+      #{infoTlp,jdbcType=VARCHAR}, #{catLevel,jdbcType=INTEGER}, #{catSubcount,jdbcType=INTEGER}, 
+      #{measureUnit,jdbcType=VARCHAR}, #{showInNav,jdbcType=BIT}, #{isShow,jdbcType=BIT}, 
+      #{isHot,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}, 
+      #{urlrewriter,jdbcType=VARCHAR}, #{pagetitle,jdbcType=VARCHAR}, #{pagekeywords,jdbcType=VARCHAR}, 
+      #{pagedesc,jdbcType=VARCHAR}, #{pricearea,jdbcType=VARCHAR}, #{catNameEn,jdbcType=VARCHAR}, 
+      #{isMobile,jdbcType=BIT}, #{catHIco,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="cat_id" keyProperty="catId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsCategory" useGeneratedKeys="true">
+    insert into ctmon_goods_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="catName != null">
+        cat_name,
+      </if>
+      <if test="catIco != null">
+        cat_ico,
+      </if>
+      <if test="catDesc != null">
+        cat_desc,
+      </if>
+      <if test="catPath != null">
+        cat_path,
+      </if>
+      <if test="listTlp != null">
+        list_tlp,
+      </if>
+      <if test="infoTlp != null">
+        info_tlp,
+      </if>
+      <if test="catLevel != null">
+        cat_level,
+      </if>
+      <if test="catSubcount != null">
+        cat_subcount,
+      </if>
+      <if test="measureUnit != null">
+        measure_unit,
+      </if>
+      <if test="showInNav != null">
+        show_in_nav,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="isHot != null">
+        is_hot,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="pageSize != null">
+        page_size,
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter,
+      </if>
+      <if test="pagetitle != null">
+        pagetitle,
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords,
+      </if>
+      <if test="pagedesc != null">
+        pagedesc,
+      </if>
+      <if test="pricearea != null">
+        pricearea,
+      </if>
+      <if test="catNameEn != null">
+        cat_name_en,
+      </if>
+      <if test="isMobile != null">
+        is_mobile,
+      </if>
+      <if test="catHIco != null">
+        cat_h_ico,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null">
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="catIco != null">
+        #{catIco,jdbcType=VARCHAR},
+      </if>
+      <if test="catDesc != null">
+        #{catDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="catPath != null">
+        #{catPath,jdbcType=VARCHAR},
+      </if>
+      <if test="listTlp != null">
+        #{listTlp,jdbcType=VARCHAR},
+      </if>
+      <if test="infoTlp != null">
+        #{infoTlp,jdbcType=VARCHAR},
+      </if>
+      <if test="catLevel != null">
+        #{catLevel,jdbcType=INTEGER},
+      </if>
+      <if test="catSubcount != null">
+        #{catSubcount,jdbcType=INTEGER},
+      </if>
+      <if test="measureUnit != null">
+        #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="showInNav != null">
+        #{showInNav,jdbcType=BIT},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isHot != null">
+        #{isHot,jdbcType=BIT},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="pageSize != null">
+        #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="urlrewriter != null">
+        #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="pagetitle != null">
+        #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        #{pagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pricearea != null">
+        #{pricearea,jdbcType=VARCHAR},
+      </if>
+      <if test="catNameEn != null">
+        #{catNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isMobile != null">
+        #{isMobile,jdbcType=BIT},
+      </if>
+      <if test="catHIco != null">
+        #{catHIco,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsCategory">
+    update ctmon_goods_category
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null">
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="catIco != null">
+        cat_ico = #{catIco,jdbcType=VARCHAR},
+      </if>
+      <if test="catDesc != null">
+        cat_desc = #{catDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="catPath != null">
+        cat_path = #{catPath,jdbcType=VARCHAR},
+      </if>
+      <if test="listTlp != null">
+        list_tlp = #{listTlp,jdbcType=VARCHAR},
+      </if>
+      <if test="infoTlp != null">
+        info_tlp = #{infoTlp,jdbcType=VARCHAR},
+      </if>
+      <if test="catLevel != null">
+        cat_level = #{catLevel,jdbcType=INTEGER},
+      </if>
+      <if test="catSubcount != null">
+        cat_subcount = #{catSubcount,jdbcType=INTEGER},
+      </if>
+      <if test="measureUnit != null">
+        measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="showInNav != null">
+        show_in_nav = #{showInNav,jdbcType=BIT},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isHot != null">
+        is_hot = #{isHot,jdbcType=BIT},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="pageSize != null">
+        page_size = #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="pagetitle != null">
+        pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        pagedesc = #{pagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pricearea != null">
+        pricearea = #{pricearea,jdbcType=VARCHAR},
+      </if>
+      <if test="catNameEn != null">
+        cat_name_en = #{catNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isMobile != null">
+        is_mobile = #{isMobile,jdbcType=BIT},
+      </if>
+      <if test="catHIco != null">
+        cat_h_ico = #{catHIco,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsCategory">
+    update ctmon_goods_category
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      cat_name = #{catName,jdbcType=VARCHAR},
+      cat_ico = #{catIco,jdbcType=VARCHAR},
+      cat_desc = #{catDesc,jdbcType=VARCHAR},
+      cat_path = #{catPath,jdbcType=VARCHAR},
+      list_tlp = #{listTlp,jdbcType=VARCHAR},
+      info_tlp = #{infoTlp,jdbcType=VARCHAR},
+      cat_level = #{catLevel,jdbcType=INTEGER},
+      cat_subcount = #{catSubcount,jdbcType=INTEGER},
+      measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      show_in_nav = #{showInNav,jdbcType=BIT},
+      is_show = #{isShow,jdbcType=BIT},
+      is_hot = #{isHot,jdbcType=BIT},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      page_size = #{pageSize,jdbcType=INTEGER},
+      urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      pagedesc = #{pagedesc,jdbcType=VARCHAR},
+      pricearea = #{pricearea,jdbcType=VARCHAR},
+      cat_name_en = #{catNameEn,jdbcType=VARCHAR},
+      is_mobile = #{isMobile,jdbcType=BIT},
+      cat_h_ico = #{catHIco,jdbcType=VARCHAR}
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+</mapper>

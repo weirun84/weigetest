@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonCmsLinkDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsLink">
+    <id column="link_id" jdbcType="INTEGER" property="linkId" />
+    <result column="cms_id" jdbcType="INTEGER" property="cmsId" />
+    <result column="link_goods_id" jdbcType="INTEGER" property="linkGoodsId" />
+    <result column="link_dowsload_id" jdbcType="INTEGER" property="linkDowsloadId" />
+    <result column="is_double" jdbcType="BIT" property="isDouble" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="link_cms_id" jdbcType="INTEGER" property="linkCmsId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    link_id, cms_id, link_goods_id, link_dowsload_id, is_double, admin_id, `type`, link_cms_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_cms_link
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_cms_link
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="link_id" keyProperty="linkId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsLink" useGeneratedKeys="true">
+    insert into ctmon_cms_link (cms_id, link_goods_id, link_dowsload_id, 
+      is_double, admin_id, `type`, 
+      link_cms_id)
+    values (#{cmsId,jdbcType=INTEGER}, #{linkGoodsId,jdbcType=INTEGER}, #{linkDowsloadId,jdbcType=INTEGER}, 
+      #{isDouble,jdbcType=BIT}, #{adminId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{linkCmsId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="link_id" keyProperty="linkId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsLink" useGeneratedKeys="true">
+    insert into ctmon_cms_link
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmsId != null">
+        cms_id,
+      </if>
+      <if test="linkGoodsId != null">
+        link_goods_id,
+      </if>
+      <if test="linkDowsloadId != null">
+        link_dowsload_id,
+      </if>
+      <if test="isDouble != null">
+        is_double,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="linkCmsId != null">
+        link_cms_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmsId != null">
+        #{cmsId,jdbcType=INTEGER},
+      </if>
+      <if test="linkGoodsId != null">
+        #{linkGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="linkDowsloadId != null">
+        #{linkDowsloadId,jdbcType=INTEGER},
+      </if>
+      <if test="isDouble != null">
+        #{isDouble,jdbcType=BIT},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="linkCmsId != null">
+        #{linkCmsId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsLink">
+    update ctmon_cms_link
+    <set>
+      <if test="cmsId != null">
+        cms_id = #{cmsId,jdbcType=INTEGER},
+      </if>
+      <if test="linkGoodsId != null">
+        link_goods_id = #{linkGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="linkDowsloadId != null">
+        link_dowsload_id = #{linkDowsloadId,jdbcType=INTEGER},
+      </if>
+      <if test="isDouble != null">
+        is_double = #{isDouble,jdbcType=BIT},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="linkCmsId != null">
+        link_cms_id = #{linkCmsId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsLink">
+    update ctmon_cms_link
+    set cms_id = #{cmsId,jdbcType=INTEGER},
+      link_goods_id = #{linkGoodsId,jdbcType=INTEGER},
+      link_dowsload_id = #{linkDowsloadId,jdbcType=INTEGER},
+      is_double = #{isDouble,jdbcType=BIT},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      link_cms_id = #{linkCmsId,jdbcType=INTEGER}
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </update>
+</mapper>

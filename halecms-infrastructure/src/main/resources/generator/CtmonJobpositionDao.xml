@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonJobpositionDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonJobposition">
+    <id column="position_id" jdbcType="INTEGER" property="positionId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="en_time" jdbcType="TIMESTAMP" property="enTime" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    position_id, `name`, `number`, content, department_id, en_time, sort_order
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_jobposition
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="long">
+    select
+    count(*)
+    from ctmon_jobposition
+  </select>
+  <select id="findByPager" resultMap="BaseResultMap">
+        select * from ctmon_jobposition  where  #{condition}  limit #{currIndex} , #{pageSize}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_jobposition
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="position_id" keyProperty="positionId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonJobposition" useGeneratedKeys="true">
+    insert into ctmon_jobposition (`name`, `number`, content, 
+      department_id, en_time, sort_order
+      )
+    values (#{name,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{departmentId,jdbcType=INTEGER}, #{enTime,jdbcType=TIMESTAMP}, #{sortOrder,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="position_id" keyProperty="positionId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonJobposition" useGeneratedKeys="true">
+    insert into ctmon_jobposition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="enTime != null">
+        en_time,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="enTime != null">
+        #{enTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonJobposition">
+    update ctmon_jobposition
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="enTime != null">
+        en_time = #{enTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonJobposition">
+    update ctmon_jobposition
+    set `name` = #{name,jdbcType=VARCHAR},
+      `number` = #{number,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      en_time = #{enTime,jdbcType=TIMESTAMP},
+      sort_order = #{sortOrder,jdbcType=INTEGER}
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+</mapper>

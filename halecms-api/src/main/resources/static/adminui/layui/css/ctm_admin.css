@@ -1,0 +1,88 @@
+﻿.title_catlist {
+    margin-bottom: 10px;
+    width:100%;
+}
+.layui-btn-sm i {
+    font-size: 13px !important;
+}
+    .title_catlist button:nth-child(2) {
+        float: right;
+        border-left: 1px solid #c9c9c9;
+    }
+body .layui-btn-xs {
+    line-height: 24px;
+}
+/**/.layui-table-grid-down {
+    display:none;
+}
+.panel-default {
+    border: 1px solid #ddd;
+}
+.layui-card-sxbody
+{
+    margin-bottom:30px;
+}
+body .layui-btn-group .list_button button {
+    margin-right: 5px !important;
+ 
+}
+
+.downpanel .layui-select-title span {
+    line-height: 38px;
+}
+/*继承父类颜色*/
+.downpanel dl dd:hover {
+    background-color: inherit;
+}
+.goodslistckeckbox .layui-form-checkbox {
+    margin-top: 3px;
+}
+.listclass {
+    width: 100%;
+}
+.listedit
+{
+    text-align:right;
+}
+body .layui-btn-group .listedit button {
+    margin-left: 5px !important;
+    border-left: 1px solid #c9c9c9;
+}
+.feedbacktop
+{
+    margin-bottom:10px;
+}
+.layui-form-label-d {
+    width: 100%;
+}
+
+
+
+.layui-icon-d {
+    position: absolute;
+    top: 9px;
+    right: -9px;
+    font-size: 20px;
+}
+
+.layui-icon-b {
+    font-size: 25px;
+}
+
+.dts {
+    position: relative;
+    
+}
+
+    .dts input {
+        margin: 10px 0px;
+    }
+
+.dts2 {
+    text-align: center;
+}
+
+.fields {
+    position: relative;
+    margin-bottom: 30px;
+}

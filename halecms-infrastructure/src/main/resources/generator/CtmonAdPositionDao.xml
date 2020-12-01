@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonAdPositionDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonAdPosition">
+    <id column="position_id" jdbcType="INTEGER" property="positionId" />
+    <result column="position_name" jdbcType="VARCHAR" property="positionName" />
+    <result column="ad_width" jdbcType="INTEGER" property="adWidth" />
+    <result column="ad_height" jdbcType="INTEGER" property="adHeight" />
+    <result column="position_desc" jdbcType="VARCHAR" property="positionDesc" />
+    <result column="position_style" jdbcType="VARCHAR" property="positionStyle" />
+    <result column="position_url" jdbcType="VARCHAR" property="positionUrl" />
+    <result column="position_type" jdbcType="INTEGER" property="positionType" />
+    <result column="is_show_text" jdbcType="BIT" property="isShowText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    position_id, position_name, ad_width, ad_height, position_desc, position_style, position_url, 
+    position_type, is_show_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_ad_position
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_ad_position
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="position_id" keyProperty="positionId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdPosition" useGeneratedKeys="true">
+    insert into ctmon_ad_position (position_name, ad_width, ad_height, 
+      position_desc, position_style, position_url, 
+      position_type, is_show_text)
+    values (#{positionName,jdbcType=VARCHAR}, #{adWidth,jdbcType=INTEGER}, #{adHeight,jdbcType=INTEGER}, 
+      #{positionDesc,jdbcType=VARCHAR}, #{positionStyle,jdbcType=VARCHAR}, #{positionUrl,jdbcType=VARCHAR}, 
+      #{positionType,jdbcType=INTEGER}, #{isShowText,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="position_id" keyProperty="positionId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdPosition" useGeneratedKeys="true">
+    insert into ctmon_ad_position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="positionName != null">
+        position_name,
+      </if>
+      <if test="adWidth != null">
+        ad_width,
+      </if>
+      <if test="adHeight != null">
+        ad_height,
+      </if>
+      <if test="positionDesc != null">
+        position_desc,
+      </if>
+      <if test="positionStyle != null">
+        position_style,
+      </if>
+      <if test="positionUrl != null">
+        position_url,
+      </if>
+      <if test="positionType != null">
+        position_type,
+      </if>
+      <if test="isShowText != null">
+        is_show_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="positionName != null">
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="adWidth != null">
+        #{adWidth,jdbcType=INTEGER},
+      </if>
+      <if test="adHeight != null">
+        #{adHeight,jdbcType=INTEGER},
+      </if>
+      <if test="positionDesc != null">
+        #{positionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="positionStyle != null">
+        #{positionStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="positionUrl != null">
+        #{positionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="positionType != null">
+        #{positionType,jdbcType=INTEGER},
+      </if>
+      <if test="isShowText != null">
+        #{isShowText,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdPosition">
+    update ctmon_ad_position
+    <set>
+      <if test="positionName != null">
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="adWidth != null">
+        ad_width = #{adWidth,jdbcType=INTEGER},
+      </if>
+      <if test="adHeight != null">
+        ad_height = #{adHeight,jdbcType=INTEGER},
+      </if>
+      <if test="positionDesc != null">
+        position_desc = #{positionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="positionStyle != null">
+        position_style = #{positionStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="positionUrl != null">
+        position_url = #{positionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="positionType != null">
+        position_type = #{positionType,jdbcType=INTEGER},
+      </if>
+      <if test="isShowText != null">
+        is_show_text = #{isShowText,jdbcType=BIT},
+      </if>
+    </set>
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdPosition">
+    update ctmon_ad_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      ad_width = #{adWidth,jdbcType=INTEGER},
+      ad_height = #{adHeight,jdbcType=INTEGER},
+      position_desc = #{positionDesc,jdbcType=VARCHAR},
+      position_style = #{positionStyle,jdbcType=VARCHAR},
+      position_url = #{positionUrl,jdbcType=VARCHAR},
+      position_type = #{positionType,jdbcType=INTEGER},
+      is_show_text = #{isShowText,jdbcType=BIT}
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+</mapper>

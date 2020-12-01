@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonCshDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonCsh">
+    <id column="csh_id" jdbcType="INTEGER" property="cshId" />
+    <result column="csh_title" jdbcType="VARCHAR" property="cshTitle" />
+    <result column="csh_con" jdbcType="VARCHAR" property="cshCon" />
+    <result column="csh_pic" jdbcType="VARCHAR" property="cshPic" />
+    <result column="csh_type" jdbcType="INTEGER" property="cshType" />
+    <result column="csh_order" jdbcType="INTEGER" property="cshOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    csh_id, csh_title, csh_con, csh_pic, csh_type, csh_order
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_csh
+    where csh_id = #{cshId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_csh
+    where csh_id = #{cshId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="csh_id" keyProperty="cshId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCsh" useGeneratedKeys="true">
+    insert into ctmon_csh (csh_title, csh_con, csh_pic, 
+      csh_type, csh_order)
+    values (#{cshTitle,jdbcType=VARCHAR}, #{cshCon,jdbcType=VARCHAR}, #{cshPic,jdbcType=VARCHAR}, 
+      #{cshType,jdbcType=INTEGER}, #{cshOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="csh_id" keyProperty="cshId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCsh" useGeneratedKeys="true">
+    insert into ctmon_csh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cshTitle != null">
+        csh_title,
+      </if>
+      <if test="cshCon != null">
+        csh_con,
+      </if>
+      <if test="cshPic != null">
+        csh_pic,
+      </if>
+      <if test="cshType != null">
+        csh_type,
+      </if>
+      <if test="cshOrder != null">
+        csh_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cshTitle != null">
+        #{cshTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cshCon != null">
+        #{cshCon,jdbcType=VARCHAR},
+      </if>
+      <if test="cshPic != null">
+        #{cshPic,jdbcType=VARCHAR},
+      </if>
+      <if test="cshType != null">
+        #{cshType,jdbcType=INTEGER},
+      </if>
+      <if test="cshOrder != null">
+        #{cshOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCsh">
+    update ctmon_csh
+    <set>
+      <if test="cshTitle != null">
+        csh_title = #{cshTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cshCon != null">
+        csh_con = #{cshCon,jdbcType=VARCHAR},
+      </if>
+      <if test="cshPic != null">
+        csh_pic = #{cshPic,jdbcType=VARCHAR},
+      </if>
+      <if test="cshType != null">
+        csh_type = #{cshType,jdbcType=INTEGER},
+      </if>
+      <if test="cshOrder != null">
+        csh_order = #{cshOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where csh_id = #{cshId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCsh">
+    update ctmon_csh
+    set csh_title = #{cshTitle,jdbcType=VARCHAR},
+      csh_con = #{cshCon,jdbcType=VARCHAR},
+      csh_pic = #{cshPic,jdbcType=VARCHAR},
+      csh_type = #{cshType,jdbcType=INTEGER},
+      csh_order = #{cshOrder,jdbcType=INTEGER}
+    where csh_id = #{cshId,jdbcType=INTEGER}
+  </update>
+</mapper>

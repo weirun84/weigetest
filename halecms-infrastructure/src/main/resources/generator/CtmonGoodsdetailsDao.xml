@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonGoodsdetailsDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsdetails">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="details_name" jdbcType="VARCHAR" property="detailsName" />
+    <result column="details" jdbcType="VARCHAR" property="details" />
+    <result column="is_moren" jdbcType="BIT" property="isMoren" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, details_name, details, is_moren
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_goodsdetails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_goodsdetails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsdetails" useGeneratedKeys="true">
+    insert into ctmon_goodsdetails (goods_id, details_name, details, 
+      is_moren)
+    values (#{goodsId,jdbcType=INTEGER}, #{detailsName,jdbcType=VARCHAR}, #{details,jdbcType=VARCHAR}, 
+      #{isMoren,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsdetails" useGeneratedKeys="true">
+    insert into ctmon_goodsdetails
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="detailsName != null">
+        details_name,
+      </if>
+      <if test="details != null">
+        details,
+      </if>
+      <if test="isMoren != null">
+        is_moren,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="detailsName != null">
+        #{detailsName,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="isMoren != null">
+        #{isMoren,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsdetails">
+    update ctmon_goodsdetails
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="detailsName != null">
+        details_name = #{detailsName,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="isMoren != null">
+        is_moren = #{isMoren,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsdetails">
+    update ctmon_goodsdetails
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      details_name = #{detailsName,jdbcType=VARCHAR},
+      details = #{details,jdbcType=VARCHAR},
+      is_moren = #{isMoren,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

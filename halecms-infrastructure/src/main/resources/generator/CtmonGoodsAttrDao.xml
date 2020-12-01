@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonGoodsAttrDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsAttr">
+    <id column="goods_attr_id" jdbcType="INTEGER" property="goodsAttrId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="attr_id" jdbcType="INTEGER" property="attrId" />
+    <result column="attr_value" jdbcType="VARCHAR" property="attrValue" />
+    <result column="attr_type" jdbcType="INTEGER" property="attrType" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_attr_id, goods_id, attr_id, attr_value, attr_type, article_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_goods_attr
+    where goods_attr_id = #{goodsAttrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_goods_attr
+    where goods_attr_id = #{goodsAttrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="goods_attr_id" keyProperty="goodsAttrId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsAttr" useGeneratedKeys="true">
+    insert into ctmon_goods_attr (goods_id, attr_id, attr_value, 
+      attr_type, article_id)
+    values (#{goodsId,jdbcType=INTEGER}, #{attrId,jdbcType=INTEGER}, #{attrValue,jdbcType=VARCHAR}, 
+      #{attrType,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="goods_attr_id" keyProperty="goodsAttrId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsAttr" useGeneratedKeys="true">
+    insert into ctmon_goods_attr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="attrId != null">
+        attr_id,
+      </if>
+      <if test="attrValue != null">
+        attr_value,
+      </if>
+      <if test="attrType != null">
+        attr_type,
+      </if>
+      <if test="articleId != null">
+        article_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="attrId != null">
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="attrValue != null">
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        #{attrType,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsAttr">
+    update ctmon_goods_attr
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="attrId != null">
+        attr_id = #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="attrValue != null">
+        attr_value = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        attr_type = #{attrType,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null">
+        article_id = #{articleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_attr_id = #{goodsAttrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonGoodsAttr">
+    update ctmon_goods_attr
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      attr_id = #{attrId,jdbcType=INTEGER},
+      attr_value = #{attrValue,jdbcType=VARCHAR},
+      attr_type = #{attrType,jdbcType=INTEGER},
+      article_id = #{articleId,jdbcType=INTEGER}
+    where goods_attr_id = #{goodsAttrId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonCmsPageDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsPage">
+    <id column="page_id" jdbcType="INTEGER" property="pageId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="is_show" jdbcType="BIT" property="isShow" />
+    <result column="show_in_nav" jdbcType="BIT" property="showInNav" />
+    <result column="info_tlp" jdbcType="VARCHAR" property="infoTlp" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="urlrewriter" jdbcType="VARCHAR" property="urlrewriter" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="pagetitle" jdbcType="VARCHAR" property="pagetitle" />
+    <result column="pagekeywords" jdbcType="VARCHAR" property="pagekeywords" />
+    <result column="pagedesc" jdbcType="VARCHAR" property="pagedesc" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="entitle" jdbcType="VARCHAR" property="entitle" />
+    <result column="mobile_content" jdbcType="VARCHAR" property="mobileContent" />
+    <result column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="wxcontent" jdbcType="VARCHAR" property="wxcontent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    page_id, parent_id, title, content, is_show, show_in_nav, info_tlp, tag, urlrewriter, 
+    add_time, click_count, pagetitle, pagekeywords, pagedesc, order_id, des, entitle, 
+    mobile_content, ad_id, photo, wxcontent
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_cms_page
+    where page_id = #{pageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_cms_page
+    where page_id = #{pageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="page_id" keyProperty="pageId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsPage" useGeneratedKeys="true">
+    insert into ctmon_cms_page (parent_id, title, content, 
+      is_show, show_in_nav, info_tlp, 
+      tag, urlrewriter, add_time, 
+      click_count, pagetitle, pagekeywords, 
+      pagedesc, order_id, des, 
+      entitle, mobile_content, ad_id, 
+      photo, wxcontent)
+    values (#{parentId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{isShow,jdbcType=BIT}, #{showInNav,jdbcType=BIT}, #{infoTlp,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR}, #{urlrewriter,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{clickCount,jdbcType=INTEGER}, #{pagetitle,jdbcType=VARCHAR}, #{pagekeywords,jdbcType=VARCHAR}, 
+      #{pagedesc,jdbcType=VARCHAR}, #{orderId,jdbcType=INTEGER}, #{des,jdbcType=VARCHAR}, 
+      #{entitle,jdbcType=VARCHAR}, #{mobileContent,jdbcType=VARCHAR}, #{adId,jdbcType=INTEGER}, 
+      #{photo,jdbcType=VARCHAR}, #{wxcontent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="page_id" keyProperty="pageId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsPage" useGeneratedKeys="true">
+    insert into ctmon_cms_page
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="showInNav != null">
+        show_in_nav,
+      </if>
+      <if test="infoTlp != null">
+        info_tlp,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="pagetitle != null">
+        pagetitle,
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords,
+      </if>
+      <if test="pagedesc != null">
+        pagedesc,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="entitle != null">
+        entitle,
+      </if>
+      <if test="mobileContent != null">
+        mobile_content,
+      </if>
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="wxcontent != null">
+        wxcontent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="showInNav != null">
+        #{showInNav,jdbcType=BIT},
+      </if>
+      <if test="infoTlp != null">
+        #{infoTlp,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="urlrewriter != null">
+        #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="pagetitle != null">
+        #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        #{pagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="entitle != null">
+        #{entitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileContent != null">
+        #{mobileContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adId != null">
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="wxcontent != null">
+        #{wxcontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsPage">
+    update ctmon_cms_page
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="showInNav != null">
+        show_in_nav = #{showInNav,jdbcType=BIT},
+      </if>
+      <if test="infoTlp != null">
+        info_tlp = #{infoTlp,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="pagetitle != null">
+        pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        pagedesc = #{pagedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="entitle != null">
+        entitle = #{entitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileContent != null">
+        mobile_content = #{mobileContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adId != null">
+        ad_id = #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="wxcontent != null">
+        wxcontent = #{wxcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where page_id = #{pageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonCmsPage">
+    update ctmon_cms_page
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=BIT},
+      show_in_nav = #{showInNav,jdbcType=BIT},
+      info_tlp = #{infoTlp,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      pagedesc = #{pagedesc,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      des = #{des,jdbcType=VARCHAR},
+      entitle = #{entitle,jdbcType=VARCHAR},
+      mobile_content = #{mobileContent,jdbcType=VARCHAR},
+      ad_id = #{adId,jdbcType=INTEGER},
+      photo = #{photo,jdbcType=VARCHAR},
+      wxcontent = #{wxcontent,jdbcType=VARCHAR}
+    where page_id = #{pageId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="/admin/layui::html" ></head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md4">
+                    <div class="layui-card">
+                        <div class="layui-card-header">产品 <i class="layui-icon layui-icon-cart-simple" style="font-size: 22px; color: #009688;    top: 42%;"></i></div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs10">
+
+                                            <p><cite th:text="${Goodcount}"></cite></p>
+                                            <h3>总发布数   </h3>
+
+
+
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <i class="layui-icon  layui-icon-chart" style="font-size: 22px; color: #009688;    top: 42%;"></i>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md4">
+                    <div class="layui-card">
+                        <div class="layui-card-header">文章  <i class="layui-icon  layui-icon-file-b" style="font-size: 22px; color: #009688;    top: 42%;"></i>  </div>
+
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs10">
+
+                                            <p><cite th:text="${Cmscount}"></cite></p>
+                                            <h3>总发布数</h3>
+
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <i class="layui-icon  layui-icon-chart" style="font-size: 22px; color: #009688;    top: 42%;"></i>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md4">
+                    <div class="layui-card">
+                        <div class="layui-card-header">留言 <i class="layui-icon  layui-icon-edit" style="font-size: 22px; color: #009688;    top: 42%;"></i> </div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs10">
+
+                                            <p><cite th:text="${msgcount}"></cite></p>
+                                            <h3>总留言数</h3>
+
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <i class="layui-icon  layui-icon-chart" style="font-size: 22px; color: #009688;    top: 42%;"></i>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">生成sitemap.xml<i class="layui-icon layui-icon-set-sm" style="font-size: 22px; color: #009688;    top: 42%;"></i></div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs12">
+                                              <button class="layui-btn">执行生成</button>
+                                                <h3>如果有更新内容，请执行 </h3>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">SEO常用工具</div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-shortcut">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="SeoTool/BannedWordIndex">
+                                                <i class="layui-icon layui-icon-set"></i>
+                                                <cite>违禁词检测</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="SeoTool/WordIndex">
+                                                <i class="layui-icon layui-icon-read"></i>
+                                                <cite>海量长尾词挖掘 </cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="SeoTool/AkeyIndex">
+                                                <i class="layui-icon layui-icon-survey"></i>
+                                                <cite>一键智能原创 </cite>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">操作手册<i class="layui-icon layui-icon-survey" style="font-size: 22px; color: #009688;    top: 42%;"></i></div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs12">
+                                            <a href="https://www.ctmon.com/创同盟品牌营销系统用户手册V1.2.zip" class="layadmin-backlog-body">
+                                                <button class="layui-btn">点击下载</button>
+                                                <h3>新后台使用说明,常见问题解答... </h3>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-tab">
+                                <ul class="layui-tab-title">
+                                    <li class="layui-this">关键词排名</li>
+                                    <li>SEO日常操作建议</li>
+                                </ul>
+                                <div class="layui-tab-content">
+                                    <div class="layui-tab-item layui-show ">
+                                        <iframe class="seomian" style=" border:0px; width:100%;height:2500px;display:none" src="../Seomain/List?act=seomain"></iframe>
+                                    </div>
+                                    <div class="layui-tab-item">
+                                        <blockquote class="layui-elem-quote seo">
+                                            <div class="layui-form-item ">
+                                                <fieldset class="layui-elem-field layui-field-title">
+                                                    <legend>一、至少2天一篇文章录入</legend>
+                                                </fieldset>
+                                                <p>文章录入可以保持通知搜索引擎抓取，让搜索引擎知道网站是活动状态，搜索引擎就会频繁的抓取您的网站，从而就会提高搜索量</p>
+                                            </div>
+                                            <div class="cms_seo">
+                                                【软文建议】：
+
+                                                1. 原创软文：它是搜索引擎最喜欢的文章，原创软文意思是，在搜索引擎上没有找到相似的文章，在库存里是属于新的，而且内容清晰易读，引起读者关注，提高浏览量，从而提升排名；但我们的 原创软文有时候也是需要偶尔加入一些网站的关键词，因为做优化讲究的是关键词密度，所以我们的文章要出现我们需要优化的关键词，不需要每一篇文章都要加入关键词，但至少70%的文章包含着 我们需要优化的关键词，例如：我们是做网站建设的，文章中至少出现2个网站建设的关键词，这样是有利于我们网站做优化的；
+
+                                                2. 伪原创软文：它是在别人的文章基础上修改了头头尾尾，来达到伪原创的作用；这样的好处是，搜索引擎在抓取的时候会识别文章的相似度，如果相似度不高，那么搜索引擎有时也会认为是原创的软文， 这样就可能到达异曲同工的效果；也能减少人工成本，所以如果觉得录入成本高时，可使用该方法；
+
+                                                3. 抄袭文章：在别人网站一模一样抄袭到我们网站中，这样操作是让搜索引擎知道网站是活动的，虽然内容是一样，但给搜索引擎知道我们正常在维护网站；如果您觉得每天抄袭文章很麻烦，那么我们也有一项seo的文章收集功能，它可自动每天更新文章，不需要人为操作，如想了解可联系我们的营销QQ客服：
+
+                                            </div>
+                                        </blockquote>
+                                        <blockquote class="layui-elem-quote seo">
+                                            <div class="layui-form-item ">
+                                                <fieldset class="layui-elem-field layui-field-title">
+                                                    <legend>二、每天发布外链</legend>
+                                                </fieldset>
+                                                <p>在优质的网站平台放置自己的网站地址，同样也会给网站带来流量和排名的</p>
+                                            </div>
+                                            <div class="cms_seo">
+                                                【发布外链方法】：
+
+                                                1、 前期由于我们不知道哪些网站是优质，那么可以通过在猪八戒网站发布任务，让别人给你发布外链
+
+                                                2、 通过站长工具权重功能分析别人发布的地址权重，然后自己收集起来，以后由优化人员来发布，这样就会降低优化成本了
+                                            </div>
+                                        </blockquote>
+                                        <blockquote class="layui-elem-quote seo">
+                                            <div class="layui-form-item ">
+                                                <fieldset class="layui-elem-field layui-field-title">
+                                                    <legend>三、友情链接交换</legend>
+                                                </fieldset>
+                                                <p>和同行或者权重高的网站交互链接，意思是别人网站放有你的链接，而你的网站放有别人网站的链接</p>
+                                            </div>
+                                            <div class="cms_seo">
+                                                【友链方法】:
+
+                                                1、考虑我们是新网站，而前期人员找不到要对换的对象，那么我们可以通过前期购买的方式快速提升排名；那么我们可以在好链、95链
+
+                                                2、在这段时间中我们就可以慢慢的寻找同行和权重高的网站交换链接了；
+
+                                                3、定期通过站长工具查询对方网站有没有把自己的网站链接去除了；
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+
+    .layadmin-carousel {
+        height: 88px !important;
+    }
+
+    .layui-col-xs2 {
+        padding: 0;
+        width: auto;
+        float: right;
+        top: 42%;
+    }
+
+    .cms_seo {
+        display: none;
+    }
+
+    .layui-elem-quote {
+        margin-bottom: 30px;
+        border-left: 2px solid #009688;
+    }
+
+
+</style>
+<script>
+    layui.config({
+        base: adminurl //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'console']);
+
+    $(function () {
+        $(".seo").click(function () {
+            $(".cms_seo").hide();
+            $(this).find(".cms_seo").show();
+        });
+
+
+    })
+
+</script>
+<script>
+
+    function seomainseo() {
+
+        $(".seomian").show();
+        console.log("1");
+    };
+
+    $(function () {
+        setTimeout("seomainseo()", 1500);
+    })
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonSearchDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonSearch">
+    <id column="search_id" jdbcType="INTEGER" property="searchId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="contents" jdbcType="VARCHAR" property="contents" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    search_id, title, des, contents, photo, `type`, `date`, click_count, type_id, is_delete, 
+    tag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_search
+    where search_id = #{searchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_search
+    where search_id = #{searchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="search_id" keyProperty="searchId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSearch" useGeneratedKeys="true">
+    insert into ctmon_search (title, des, contents, 
+      photo, `type`, `date`, 
+      click_count, type_id, is_delete, 
+      tag)
+    values (#{title,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, #{contents,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
+      #{clickCount,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{tag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="search_id" keyProperty="searchId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSearch" useGeneratedKeys="true">
+    insert into ctmon_search
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="contents != null">
+        contents,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null">
+        #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSearch">
+    update ctmon_search
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null">
+        contents = #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        `date` = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where search_id = #{searchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSearch">
+    update ctmon_search
+    set title = #{title,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `date` = #{date,jdbcType=TIMESTAMP},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      tag = #{tag,jdbcType=VARCHAR}
+    where search_id = #{searchId,jdbcType=INTEGER}
+  </update>
+</mapper>

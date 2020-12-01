@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonAdminuserDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminuser">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+    <result column="action_list" jdbcType="VARCHAR" property="actionList" />
+    <result column="nav_list" jdbcType="VARCHAR" property="navList" />
+    <result column="lang_type" jdbcType="VARCHAR" property="langType" />
+    <result column="agency_id" jdbcType="INTEGER" property="agencyId" />
+    <result column="todolist" jdbcType="VARCHAR" property="todolist" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, email, `password`, add_time, last_login, last_ip, action_list, 
+    nav_list, lang_type, agency_id, todolist, salt, phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_adminuser
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="GetAdminUserInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ctmon_adminuser
+    where user_name = #{username,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="long">
+    select
+    count(*)
+    from ctmon_adminuser
+  </select>
+  <select id="findByPager" resultMap="BaseResultMap">
+        select * from ctmon_adminuser  where  #{condition}  limit #{currIndex} , #{pageSize}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_adminuser
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminuser" useGeneratedKeys="true">
+    insert into ctmon_adminuser (user_name, email, `password`, 
+      add_time, last_login, last_ip, 
+      action_list, nav_list, lang_type, 
+      agency_id, todolist, salt, 
+      phone)
+    values (#{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{lastLogin,jdbcType=TIMESTAMP}, #{lastIp,jdbcType=VARCHAR}, 
+      #{actionList,jdbcType=VARCHAR}, #{navList,jdbcType=VARCHAR}, #{langType,jdbcType=VARCHAR}, 
+      #{agencyId,jdbcType=INTEGER}, #{todolist,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminuser" useGeneratedKeys="true">
+    insert into ctmon_adminuser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="lastLogin != null">
+        last_login,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+      <if test="actionList != null">
+        action_list,
+      </if>
+      <if test="navList != null">
+        nav_list,
+      </if>
+      <if test="langType != null">
+        lang_type,
+      </if>
+      <if test="agencyId != null">
+        agency_id,
+      </if>
+      <if test="todolist != null">
+        todolist,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogin != null">
+        #{lastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="actionList != null">
+        #{actionList,jdbcType=VARCHAR},
+      </if>
+      <if test="navList != null">
+        #{navList,jdbcType=VARCHAR},
+      </if>
+      <if test="langType != null">
+        #{langType,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyId != null">
+        #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="todolist != null">
+        #{todolist,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminuser">
+    update ctmon_adminuser
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogin != null">
+        last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="actionList != null">
+        action_list = #{actionList,jdbcType=VARCHAR},
+      </if>
+      <if test="navList != null">
+        nav_list = #{navList,jdbcType=VARCHAR},
+      </if>
+      <if test="langType != null">
+        lang_type = #{langType,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyId != null">
+        agency_id = #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="todolist != null">
+        todolist = #{todolist,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminuser">
+    update ctmon_adminuser
+    set user_name = #{userName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      action_list = #{actionList,jdbcType=VARCHAR},
+      nav_list = #{navList,jdbcType=VARCHAR},
+      lang_type = #{langType,jdbcType=VARCHAR},
+      agency_id = #{agencyId,jdbcType=INTEGER},
+      todolist = #{todolist,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

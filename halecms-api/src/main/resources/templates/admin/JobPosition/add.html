@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="/admin/layui::html" ></head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <form id="dataForm" method="post" class="layui-form" lay-filter="component-form-element">
+                <div class="layui-card">
+                    <div class="layui-card-header">职位添加 <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="list" href="@Url.Content("List")" style="float:right; margin-top:5px;">返回列表</a></div>
+                    <div class="layui-card-body">
+                        <div class="layui-tab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">基本信息</li>
+
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">职位名称 </label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="name" value="" class="layui-input" lay-verify="required">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item ">
+                                        <label class="layui-form-label">部门</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-unselect ">
+                                                <select name="department_id" id="department_id">
+                                                    <option value="0" media_type="0">请选择</option>
+                                                    <option th:each="ads,userStat:${JobDepartment}" th:value="${ads.departmentId}" th:text="${ads.departmentName}"></option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">招聘人数 </label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="number" value="" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">结束日期</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" id="LAY-component-form-group-date2" lay-verify="required" name="en_time" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">排序 </label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sort_order" value="0" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">岗位描述 </label>
+                                        <div class="layui-input-block">
+                                            <textarea id="content" name="content"  placeholder="岗位描述"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="component-form-element" type="submit">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="/adminui/lib/upload.js"></script>
+
+
+<script>
+    layui.config({
+        base: adminurl //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload', 'tree','laydate'], function () {
+        var $ = layui.$
+            , admin = layui.admin
+            , element = layui.element
+            , form = layui.form
+            , tree = layui.tree
+            , upload = layui.upload
+            ,laydate = layui.laydate;
+
+
+        //日期
+
+        laydate.render({
+            elem: '#LAY-component-form-group-date2'
+        });
+
+
+        form.render(null, 'component-form-element');
+        element.render('breadcrumb', 'breadcrumb');
+
+        form.on('submit(component-form-element)', function (data) {
+
+            var data = data.field;
+
+            //请求登入接口
+            reqadmin_addoredit(layer, admin, 'Add', data, 'List');
+            return false;
+        });
+        //生成富文本编辑框
+        UE.getEditor('content');
+
+    });
+</script>
+</body>
+</html>

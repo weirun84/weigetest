@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonFeedbackDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonFeedback">
+    <id column="msg_id" jdbcType="INTEGER" property="msgId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="msg_title" jdbcType="VARCHAR" property="msgTitle" />
+    <result column="msg_type" jdbcType="INTEGER" property="msgType" />
+    <result column="msg_content" jdbcType="VARCHAR" property="msgContent" />
+    <result column="msg_time" jdbcType="TIMESTAMP" property="msgTime" />
+    <result column="msg_file" jdbcType="VARCHAR" property="msgFile" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="is_show" jdbcType="BIT" property="isShow" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    msg_id, parent_id, user_id, user_name, user_email, msg_title, msg_type, msg_content, 
+    msg_time, msg_file, order_id, is_show, url, ip, user_tel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_feedback
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </select>
+  <select id="GetFeedBackCount" resultType="Integer">
+    select
+   count(*)
+    from ctmon_feedback
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_feedback
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="msg_id" keyProperty="msgId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonFeedback" useGeneratedKeys="true">
+    insert into ctmon_feedback (parent_id, user_id, user_name, 
+      user_email, msg_title, msg_type, 
+      msg_content, msg_time, msg_file, 
+      order_id, is_show, url, ip, 
+      user_tel)
+    values (#{parentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{msgTitle,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER}, 
+      #{msgContent,jdbcType=VARCHAR}, #{msgTime,jdbcType=TIMESTAMP}, #{msgFile,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=INTEGER}, #{isShow,jdbcType=BIT}, #{url,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{userTel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="msg_id" keyProperty="msgId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonFeedback" useGeneratedKeys="true">
+    insert into ctmon_feedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="msgTitle != null">
+        msg_title,
+      </if>
+      <if test="msgType != null">
+        msg_type,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="msgTime != null">
+        msg_time,
+      </if>
+      <if test="msgFile != null">
+        msg_file,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="userTel != null">
+        user_tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTitle != null">
+        #{msgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTime != null">
+        #{msgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgFile != null">
+        #{msgFile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonFeedback">
+    update ctmon_feedback
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTitle != null">
+        msg_title = #{msgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null">
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTime != null">
+        msg_time = #{msgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgFile != null">
+        msg_file = #{msgFile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonFeedback">
+    update ctmon_feedback
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      msg_title = #{msgTitle,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      msg_time = #{msgTime,jdbcType=TIMESTAMP},
+      msg_file = #{msgFile,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=BIT},
+      url = #{url,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR}
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </update>
+</mapper>

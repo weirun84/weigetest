@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonSynchronoustableDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonSynchronoustable">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+    <result column="tolanguage" jdbcType="VARCHAR" property="tolanguage" />
+    <result column="conn" jdbcType="VARCHAR" property="conn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, `language`, tolanguage, conn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_synchronoustable
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_synchronoustable
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSynchronoustable" useGeneratedKeys="true">
+    insert into ctmon_synchronoustable (title, `language`, tolanguage, 
+      conn)
+    values (#{title,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, #{tolanguage,jdbcType=VARCHAR}, 
+      #{conn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSynchronoustable" useGeneratedKeys="true">
+    insert into ctmon_synchronoustable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="language != null">
+        `language`,
+      </if>
+      <if test="tolanguage != null">
+        tolanguage,
+      </if>
+      <if test="conn != null">
+        conn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="tolanguage != null">
+        #{tolanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="conn != null">
+        #{conn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSynchronoustable">
+    update ctmon_synchronoustable
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        `language` = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="tolanguage != null">
+        tolanguage = #{tolanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="conn != null">
+        conn = #{conn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonSynchronoustable">
+    update ctmon_synchronoustable
+    set title = #{title,jdbcType=VARCHAR},
+      `language` = #{language,jdbcType=VARCHAR},
+      tolanguage = #{tolanguage,jdbcType=VARCHAR},
+      conn = #{conn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

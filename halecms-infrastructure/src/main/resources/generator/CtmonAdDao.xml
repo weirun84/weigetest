@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonAdDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonAd">
+    <id column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="position_id" jdbcType="INTEGER" property="positionId" />
+    <result column="media_type" jdbcType="INTEGER" property="mediaType" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    <result column="ad_link" jdbcType="VARCHAR" property="adLink" />
+    <result column="ad_code" jdbcType="VARCHAR" property="adCode" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="link_man" jdbcType="VARCHAR" property="linkMan" />
+    <result column="link_email" jdbcType="VARCHAR" property="linkEmail" />
+    <result column="phone_url" jdbcType="VARCHAR" property="phoneUrl" />
+    <result column="click_count" jdbcType="BIGINT" property="clickCount" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="orderid" jdbcType="INTEGER" property="orderid" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ad_id, position_id, media_type, ad_name, ad_link, ad_code, start_time, end_time, 
+    link_man, link_email, phone_url, click_count, enabled, orderid, des, video_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_ad
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_ad
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ad_id" keyProperty="adId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAd" useGeneratedKeys="true">
+    insert into ctmon_ad (position_id, media_type, ad_name, 
+      ad_link, ad_code, start_time, 
+      end_time, link_man, link_email, 
+      phone_url, click_count, enabled, 
+      orderid, des, video_url
+      )
+    values (#{positionId,jdbcType=INTEGER}, #{mediaType,jdbcType=INTEGER}, #{adName,jdbcType=VARCHAR}, 
+      #{adLink,jdbcType=VARCHAR}, #{adCode,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{linkMan,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, 
+      #{phoneUrl,jdbcType=VARCHAR}, #{clickCount,jdbcType=BIGINT}, #{enabled,jdbcType=BIT}, 
+      #{orderid,jdbcType=INTEGER}, #{des,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ad_id" keyProperty="adId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAd" useGeneratedKeys="true">
+    insert into ctmon_ad
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="positionId != null">
+        position_id,
+      </if>
+      <if test="mediaType != null">
+        media_type,
+      </if>
+      <if test="adName != null">
+        ad_name,
+      </if>
+      <if test="adLink != null">
+        ad_link,
+      </if>
+      <if test="adCode != null">
+        ad_code,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="linkMan != null">
+        link_man,
+      </if>
+      <if test="linkEmail != null">
+        link_email,
+      </if>
+      <if test="phoneUrl != null">
+        phone_url,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="videoUrl != null">
+        video_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="positionId != null">
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaType != null">
+        #{mediaType,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null">
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adLink != null">
+        #{adLink,jdbcType=VARCHAR},
+      </if>
+      <if test="adCode != null">
+        #{adCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkMan != null">
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null">
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneUrl != null">
+        #{phoneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAd">
+    update ctmon_ad
+    <set>
+      <if test="positionId != null">
+        position_id = #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaType != null">
+        media_type = #{mediaType,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null">
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adLink != null">
+        ad_link = #{adLink,jdbcType=VARCHAR},
+      </if>
+      <if test="adCode != null">
+        ad_code = #{adCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkMan != null">
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null">
+        link_email = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneUrl != null">
+        phone_url = #{phoneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAd">
+    update ctmon_ad
+    set position_id = #{positionId,jdbcType=INTEGER},
+      media_type = #{mediaType,jdbcType=INTEGER},
+      ad_name = #{adName,jdbcType=VARCHAR},
+      ad_link = #{adLink,jdbcType=VARCHAR},
+      ad_code = #{adCode,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      phone_url = #{phoneUrl,jdbcType=VARCHAR},
+      click_count = #{clickCount,jdbcType=BIGINT},
+      enabled = #{enabled,jdbcType=BIT},
+      orderid = #{orderid,jdbcType=INTEGER},
+      des = #{des,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+</mapper>

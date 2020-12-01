@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonAdminActionDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminAction">
+    <id column="action_id" jdbcType="INTEGER" property="actionId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="action_code" jdbcType="VARCHAR" property="actionCode" />
+    <result column="action_text" jdbcType="VARCHAR" property="actionText" />
+    <result column="isenable" jdbcType="BIT" property="isenable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    action_id, parent_id, action_code, action_text, isenable
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_admin_action
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </select>
+  <select id="GetAllaction"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ctmon_admin_action
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_admin_action
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="action_id" keyProperty="actionId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminAction" useGeneratedKeys="true">
+    insert into ctmon_admin_action (parent_id, action_code, action_text, 
+      isenable)
+    values (#{parentId,jdbcType=INTEGER}, #{actionCode,jdbcType=VARCHAR}, #{actionText,jdbcType=VARCHAR}, 
+      #{isenable,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="action_id" keyProperty="actionId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminAction" useGeneratedKeys="true">
+    insert into ctmon_admin_action
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="actionCode != null">
+        action_code,
+      </if>
+      <if test="actionText != null">
+        action_text,
+      </if>
+      <if test="isenable != null">
+        isenable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="actionCode != null">
+        #{actionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="actionText != null">
+        #{actionText,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null">
+        #{isenable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminAction">
+    update ctmon_admin_action
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="actionCode != null">
+        action_code = #{actionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="actionText != null">
+        action_text = #{actionText,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null">
+        isenable = #{isenable,jdbcType=BIT},
+      </if>
+    </set>
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminAction">
+    update ctmon_admin_action
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      action_code = #{actionCode,jdbcType=VARCHAR},
+      action_text = #{actionText,jdbcType=VARCHAR},
+      isenable = #{isenable,jdbcType=BIT}
+    where action_id = #{actionId,jdbcType=INTEGER}
+  </update>
+</mapper>

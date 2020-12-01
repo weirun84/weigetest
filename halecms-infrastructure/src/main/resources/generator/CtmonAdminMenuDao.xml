@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonAdminMenuDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminMenu">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="isshow" jdbcType="BIT" property="isshow" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    menu_id, parent_id, `name`, link, `type`, isshow
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_admin_menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  <select id="GetAdminMenuAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ctmon_admin_menu where isshow = true
+  </select>
+  <select id="GetChilendAdminMenu" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ctmon_admin_menu
+    where parentId = #{parentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_admin_menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="menu_id" keyProperty="menuId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminMenu" useGeneratedKeys="true">
+    insert into ctmon_admin_menu (parent_id, `name`, link, 
+      `type`, isshow)
+    values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{isshow,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="menu_id" keyProperty="menuId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminMenu" useGeneratedKeys="true">
+    insert into ctmon_admin_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="isshow != null">
+        isshow,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isshow != null">
+        #{isshow,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminMenu">
+    update ctmon_admin_menu
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isshow != null">
+        isshow = #{isshow,jdbcType=BIT},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonAdminMenu">
+    update ctmon_admin_menu
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      isshow = #{isshow,jdbcType=BIT}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+</mapper>

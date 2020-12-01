@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halecms.infrastructure.sql.mysql.dao.CtmonDownloadCategoryDao">
+  <resultMap id="BaseResultMap" type="com.halecms.infrastructure.sql.mysql.entity.CtmonDownloadCategory">
+    <id column="cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="cat_type" jdbcType="INTEGER" property="catType" />
+    <result column="cat_name" jdbcType="VARCHAR" property="catName" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="cat_desc" jdbcType="VARCHAR" property="catDesc" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="cat_level" jdbcType="INTEGER" property="catLevel" />
+    <result column="template_file" jdbcType="VARCHAR" property="templateFile" />
+    <result column="template_detail_path" jdbcType="VARCHAR" property="templateDetailPath" />
+    <result column="show_in_nav" jdbcType="BIT" property="showInNav" />
+    <result column="is_review" jdbcType="BIT" property="isReview" />
+    <result column="is_show" jdbcType="BIT" property="isShow" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="urlrewriter" jdbcType="VARCHAR" property="urlrewriter" />
+    <result column="child_open" jdbcType="BIT" property="childOpen" />
+    <result column="ico" jdbcType="VARCHAR" property="ico" />
+    <result column="article_photo_height" jdbcType="INTEGER" property="articlePhotoHeight" />
+    <result column="article_photo_width" jdbcType="INTEGER" property="articlePhotoWidth" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="pagesize" jdbcType="INTEGER" property="pagesize" />
+    <result column="pagetitle" jdbcType="VARCHAR" property="pagetitle" />
+    <result column="pagekeywords" jdbcType="VARCHAR" property="pagekeywords" />
+    <result column="pagedesc" jdbcType="VARCHAR" property="pagedesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cat_id, parent_id, cat_type, cat_name, keywords, cat_desc, sort_order, cat_level, 
+    template_file, template_detail_path, show_in_nav, is_review, is_show, grade, urlrewriter, 
+    child_open, ico, article_photo_height, article_photo_width, link_url, pagesize, pagetitle, 
+    pagekeywords, pagedesc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctmon_download_category
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctmon_download_category
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="cat_id" keyProperty="catId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownloadCategory" useGeneratedKeys="true">
+    insert into ctmon_download_category (parent_id, cat_type, cat_name, 
+      keywords, cat_desc, sort_order, 
+      cat_level, template_file, template_detail_path, 
+      show_in_nav, is_review, is_show, grade, 
+      urlrewriter, child_open, ico, 
+      article_photo_height, article_photo_width, 
+      link_url, pagesize, pagetitle, 
+      pagekeywords, pagedesc)
+    values (#{parentId,jdbcType=INTEGER}, #{catType,jdbcType=INTEGER}, #{catName,jdbcType=VARCHAR}, 
+      #{keywords,jdbcType=VARCHAR}, #{catDesc,jdbcType=VARCHAR}, #{sortOrder,jdbcType=INTEGER}, 
+      #{catLevel,jdbcType=INTEGER}, #{templateFile,jdbcType=VARCHAR}, #{templateDetailPath,jdbcType=VARCHAR}, 
+      #{showInNav,jdbcType=BIT}, #{isReview,jdbcType=BIT}, #{isShow,jdbcType=BIT}, #{grade,jdbcType=INTEGER}, 
+      #{urlrewriter,jdbcType=VARCHAR}, #{childOpen,jdbcType=BIT}, #{ico,jdbcType=VARCHAR}, 
+      #{articlePhotoHeight,jdbcType=INTEGER}, #{articlePhotoWidth,jdbcType=INTEGER}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{pagesize,jdbcType=INTEGER}, #{pagetitle,jdbcType=VARCHAR}, 
+      #{pagekeywords,jdbcType=VARCHAR}, #{pagedesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="cat_id" keyProperty="catId" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownloadCategory" useGeneratedKeys="true">
+    insert into ctmon_download_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="catType != null">
+        cat_type,
+      </if>
+      <if test="catName != null">
+        cat_name,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="catDesc != null">
+        cat_desc,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="catLevel != null">
+        cat_level,
+      </if>
+      <if test="templateFile != null">
+        template_file,
+      </if>
+      <if test="templateDetailPath != null">
+        template_detail_path,
+      </if>
+      <if test="showInNav != null">
+        show_in_nav,
+      </if>
+      <if test="isReview != null">
+        is_review,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter,
+      </if>
+      <if test="childOpen != null">
+        child_open,
+      </if>
+      <if test="ico != null">
+        ico,
+      </if>
+      <if test="articlePhotoHeight != null">
+        article_photo_height,
+      </if>
+      <if test="articlePhotoWidth != null">
+        article_photo_width,
+      </if>
+      <if test="linkUrl != null">
+        link_url,
+      </if>
+      <if test="pagesize != null">
+        pagesize,
+      </if>
+      <if test="pagetitle != null">
+        pagetitle,
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords,
+      </if>
+      <if test="pagedesc != null">
+        pagedesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="catType != null">
+        #{catType,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null">
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="catDesc != null">
+        #{catDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="catLevel != null">
+        #{catLevel,jdbcType=INTEGER},
+      </if>
+      <if test="templateFile != null">
+        #{templateFile,jdbcType=VARCHAR},
+      </if>
+      <if test="templateDetailPath != null">
+        #{templateDetailPath,jdbcType=VARCHAR},
+      </if>
+      <if test="showInNav != null">
+        #{showInNav,jdbcType=BIT},
+      </if>
+      <if test="isReview != null">
+        #{isReview,jdbcType=BIT},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="urlrewriter != null">
+        #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="childOpen != null">
+        #{childOpen,jdbcType=BIT},
+      </if>
+      <if test="ico != null">
+        #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="articlePhotoHeight != null">
+        #{articlePhotoHeight,jdbcType=INTEGER},
+      </if>
+      <if test="articlePhotoWidth != null">
+        #{articlePhotoWidth,jdbcType=INTEGER},
+      </if>
+      <if test="linkUrl != null">
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pagesize != null">
+        #{pagesize,jdbcType=INTEGER},
+      </if>
+      <if test="pagetitle != null">
+        #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        #{pagedesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownloadCategory">
+    update ctmon_download_category
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="catType != null">
+        cat_type = #{catType,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null">
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="catDesc != null">
+        cat_desc = #{catDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="catLevel != null">
+        cat_level = #{catLevel,jdbcType=INTEGER},
+      </if>
+      <if test="templateFile != null">
+        template_file = #{templateFile,jdbcType=VARCHAR},
+      </if>
+      <if test="templateDetailPath != null">
+        template_detail_path = #{templateDetailPath,jdbcType=VARCHAR},
+      </if>
+      <if test="showInNav != null">
+        show_in_nav = #{showInNav,jdbcType=BIT},
+      </if>
+      <if test="isReview != null">
+        is_review = #{isReview,jdbcType=BIT},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="urlrewriter != null">
+        urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      </if>
+      <if test="childOpen != null">
+        child_open = #{childOpen,jdbcType=BIT},
+      </if>
+      <if test="ico != null">
+        ico = #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="articlePhotoHeight != null">
+        article_photo_height = #{articlePhotoHeight,jdbcType=INTEGER},
+      </if>
+      <if test="articlePhotoWidth != null">
+        article_photo_width = #{articlePhotoWidth,jdbcType=INTEGER},
+      </if>
+      <if test="linkUrl != null">
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pagesize != null">
+        pagesize = #{pagesize,jdbcType=INTEGER},
+      </if>
+      <if test="pagetitle != null">
+        pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pagekeywords != null">
+        pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="pagedesc != null">
+        pagedesc = #{pagedesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.halecms.infrastructure.sql.mysql.entity.CtmonDownloadCategory">
+    update ctmon_download_category
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      cat_type = #{catType,jdbcType=INTEGER},
+      cat_name = #{catName,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      cat_desc = #{catDesc,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      cat_level = #{catLevel,jdbcType=INTEGER},
+      template_file = #{templateFile,jdbcType=VARCHAR},
+      template_detail_path = #{templateDetailPath,jdbcType=VARCHAR},
+      show_in_nav = #{showInNav,jdbcType=BIT},
+      is_review = #{isReview,jdbcType=BIT},
+      is_show = #{isShow,jdbcType=BIT},
+      grade = #{grade,jdbcType=INTEGER},
+      urlrewriter = #{urlrewriter,jdbcType=VARCHAR},
+      child_open = #{childOpen,jdbcType=BIT},
+      ico = #{ico,jdbcType=VARCHAR},
+      article_photo_height = #{articlePhotoHeight,jdbcType=INTEGER},
+      article_photo_width = #{articlePhotoWidth,jdbcType=INTEGER},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      pagesize = #{pagesize,jdbcType=INTEGER},
+      pagetitle = #{pagetitle,jdbcType=VARCHAR},
+      pagekeywords = #{pagekeywords,jdbcType=VARCHAR},
+      pagedesc = #{pagedesc,jdbcType=VARCHAR}
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+</mapper>
